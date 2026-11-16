@@ -153,3 +153,56 @@
     color: var(--color-foreground);
   }
 }
+
+:root {
+  --ink: #0b1b33; --ink-2: #334766; --muted-ink: #4a5b75; --blue: #0a5cf5; --blue-hover: #0848c2;
+  --mint: #5fe0c6; --success: #12b886; --soft: #f6f9fc; --hairline: #e3e8ee; --dark-card: #13284a;
+  --dark-border: #22406b; --muted-dark: #9fb4d4;
+  --background: #ffffff; --foreground: var(--ink); --primary: var(--blue); --primary-foreground: #fff;
+  --muted-foreground: var(--muted-ink); --border: var(--hairline);
+}
+@theme inline {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --color-ink: var(--ink); --color-ink-2: var(--ink-2); --color-muted-ink: var(--muted-ink);
+  --color-blue: var(--blue); --color-mint: var(--mint); --color-success: var(--success);
+  --color-soft: var(--soft); --color-hairline: var(--hairline); --color-dark-card: var(--dark-card);
+  --color-dark-border: var(--dark-border); --color-muted-dark: var(--muted-dark);
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-sans); font-weight: 300; font-feature-settings: "ss01"; color: var(--ink); -webkit-font-smoothing: antialiased; }
+.tnum { font-feature-settings: "ss01", "tnum"; }
+.ss-container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+@media (max-width: 640px) { .ss-container { padding: 0 20px; } }
+.ss-section { padding: 112px 0; }
+@media (max-width: 640px) { .ss-section { padding: 80px 0; } }
+.ss-h1 { font-size: 64px; font-weight: 300; line-height: 1.02; letter-spacing: -2px; }
+.ss-h2 { font-size: 44px; font-weight: 300; line-height: 1.1; letter-spacing: -1.2px; }
+@media (max-width: 640px) { .ss-h1 { font-size: 42px; letter-spacing: -1.2px; } .ss-h2 { font-size: 32px; letter-spacing: -0.8px; } }
+.ss-card-title { font-size: 24px; font-weight: 400; letter-spacing: -0.3px; }
+.ss-eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 1.2px; font-weight: 500; color: var(--blue); }
+.ss-lead { font-size: 19px; line-height: 1.55; color: var(--ink-2); }
+.ss-small { font-size: 14px; color: var(--muted-ink); }
+.ss-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 22px; border-radius: 9999px; font-weight: 500; font-size: 15px; transition: background .15s, color .15s; white-space: nowrap; cursor: pointer; }
+.ss-btn-primary { background: var(--blue); color: #fff; }
+.ss-btn-primary:hover { background: var(--blue-hover); }
+.ss-btn-ghost { background: #fff; color: var(--blue); border: 1px solid var(--blue); }
+.ss-btn-ghost:hover { background: var(--soft); }
+.ss-card { background: #fff; border: 1px solid var(--hairline); border-radius: 14px; box-shadow: 0 1px 3px rgba(11,27,51,.06); padding: 32px; }
+.ss-dark-card { background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 14px; padding: 24px; }
+.ss-urlbar { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #c9d6e6; border-radius: 9999px; padding: 6px 6px 6px 18px; box-shadow: 0 20px 50px -12px rgba(11,27,51,.18), 0 2px 6px rgba(11,27,51,.05); }
+.ss-urlbar-icon { color: var(--muted-ink); flex-shrink: 0; }
+.ss-urlbar-input { flex: 1; min-width: 0; min-height: 44px; font-size: 16px; outline: none; background: transparent; color: var(--ink); }
+.ss-urlbar-input::placeholder, .ss-input::placeholder { color: #6b7a90; }
+@media (max-width: 640px) {
+  .ss-urlbar { flex-wrap: wrap; border-radius: 20px; padding: 10px; }
+  .ss-urlbar-input { flex-basis: calc(100% - 40px); }
+  .ss-urlbar .ss-btn { width: 100%; }
+}
+.ss-input { width: 100%; min-height: 48px; border: 1px solid #c9d6e6; border-radius: 9999px; padding: 0 18px; font-size: 16px; background: #fff; }
+.ss-success { padding: 16px 22px; border-radius: 9999px; background: #e7f8f1; color: #0b6b4c; font-weight: 500; max-width: 560px; }
+.ss-error { color: #b42318; font-size: 14px; }
+.ss-mesh { position: absolute; border-radius: 9999px; filter: blur(70px); opacity: .75; pointer-events: none; }
+.ss-nav-link { color: var(--ink-2); font-size: 15px; font-weight: 400; padding: 12px 4px; }
+.ss-nav-link:hover { color: var(--blue); }
+.ss-toggle { min-height: 44px; padding: 0 20px; border-radius: 9999px; font-weight: 500; font-size: 14px; border: 1px solid var(--dark-border); color: var(--muted-dark); }
+.ss-toggle[aria-pressed="true"] { background: #fff; color: var(--ink); border-color: #fff; }
