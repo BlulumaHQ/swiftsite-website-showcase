@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { UrlForm } from "@/components/UrlForm";
-import { studies, launchedSites, TOTAL_STUDIES } from "@/data/work";
-import { SITE_URL } from "@/lib/site";
+import { studies, launchedSites } from "@/data/work";
+import { SITE_URL, CONTACT_EMAIL } from "@/lib/site";
+import { SiteHeader, SiteFooter, Shot } from "@/components/SiteChrome";
 
 const TITLE = "SwiftSite — Brand-new website for $99 CAD";
 const DESC = "AI rebuilds your small business website into two fresh designs, checked by a real designer. Pick one for $99 CAD. Free preview, no credit card.";
@@ -22,26 +23,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-function Logo() {
-  return (
-    <a href="#" className="flex items-center gap-2.5 min-h-11" aria-label="SwiftSite home">
-      <span className="grid h-9 w-9 place-items-center rounded-[10px] bg-ink">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--mint)" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true">
-          <path d="M17 6.5C15.8 5.3 14.2 4.8 12.3 4.8 9.6 4.8 7.6 6.2 7.6 8.3c0 4.7 9.2 2.6 9.2 7.4 0 2.2-2.1 3.6-4.9 3.6-2.1 0-3.9-.7-5.1-2" />
-        </svg>
-      </span>
-      <span className="text-[20px] font-semibold tracking-tight text-ink">SwiftSite</span>
-    </a>
-  );
-}
-
-const navLinks = [
-  ["How it works", "#how"],
-  ["Work", "#work"],
-  ["Pricing", "#pricing"],
-  ["FAQ", "#faq"],
-] as const;
 
 function Check({ className = "text-success" }: { className?: string }) {
   return (
@@ -66,24 +47,10 @@ function HeroVisual() {
         </div>
       </div>
       <BrowserCard className="absolute right-0 top-0 w-[68%] rotate-2" label="Version A — Clean & modern">
-        <div className="rounded-md bg-ink p-4">
-          <div className="h-2.5 w-2/3 rounded bg-white/80" />
-          <div className="mt-2 h-2 w-1/2 rounded bg-white/40" />
-          <div className="mt-3 h-5 w-16 rounded-full bg-mint" />
-        </div>
-        <div className="mt-2 grid grid-cols-3 gap-2">
-          <div className="h-10 rounded bg-soft" /><div className="h-10 rounded bg-soft" /><div className="h-10 rounded bg-soft" />
-        </div>
+        <Shot src={studies[0]!.versionA.image} alt="" className="aspect-[16/10] rounded-md" />
       </BrowserCard>
-      <BrowserCard className="absolute bottom-6 left-[14%] w-[66%] -rotate-1" label="Version B — Warm & friendly">
-        <div className="flex gap-3 rounded-md bg-[#fbf4ea] p-4">
-          <div className="flex-1">
-            <div className="h-2.5 w-4/5 rounded bg-[#7a4a2a]" />
-            <div className="mt-2 h-2 w-3/5 rounded bg-[#b08a6e]" />
-            <div className="mt-3 h-5 w-16 rounded-full bg-[#e2703a]" />
-          </div>
-          <div className="h-16 w-20 rounded bg-[#e9d6bf]" />
-        </div>
+      <BrowserCard className="absolute bottom-6 left-[14%] w-[66%] -rotate-1" label="Version B — Bold & warm">
+        <Shot src={studies[0]!.versionB.image} alt="" className="aspect-[16/10] rounded-md" />
       </BrowserCard>
       <div className="absolute bottom-0 right-0 flex items-center gap-3 rounded-2xl border border-hairline bg-white px-4 py-3 shadow-lg">
         <span className="tnum grid h-11 w-11 place-items-center rounded-full border-[3px] border-success text-[11px] font-semibold text-ink">[96]</span>
@@ -131,8 +98,14 @@ const faqs = [
 ];
 
 function TwoDirections() {
+  const [idx, setIdx] = useState(0);
   const [v, setV] = useState<"A" | "B">("A");
-  const s = studies[0]!;
+  const s = studies[idx]!;
+  const shown = v === "A" ? s.versionA : s.versionB;
+  const pick = (i: number) => {
+    setIdx(i);
+    setV("A");
+  };
   return (
     <section id="work" className="ss-section bg-ink text-white">
       <div className="ss-container">
@@ -148,64 +121,57 @@ function TwoDirections() {
           </div>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-[1fr_320px]">
+        <div className="mt-10 flex flex-wrap gap-2" role="group" aria-label="Choose a project">
+          {studies.map((st, i) => (
+            <button key={st.id} type="button" className="ss-toggle" aria-pressed={idx === i} onClick={() => pick(i)}>{st.client}</button>
+          ))}
+        </div>
+
+        <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_320px]">
           <div className="rounded-[14px] border border-dark-border bg-dark-card p-4" aria-live="polite">
-            <div className="mb-3 flex gap-1.5" aria-hidden="true">
-              <span className="h-2.5 w-2.5 rounded-full bg-dark-border" /><span className="h-2.5 w-2.5 rounded-full bg-dark-border" /><span className="h-2.5 w-2.5 rounded-full bg-dark-border" />
+            <div className="mb-3 flex items-center gap-1.5">
+              <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-dark-border" /><span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-dark-border" /><span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-dark-border" />
+              <span className="ml-3 text-[13px] text-muted-dark">{s.client} · Version {v}</span>
             </div>
-            {v === "A" ? (
-              <div className="rounded-lg bg-white p-4">
-                <div className="rounded-md bg-ink p-8 md:p-12">
-                  <p className="ss-card-title max-w-md text-white">{s.versionA.headline}</p>
-                  <span className="mt-6 inline-flex min-h-10 items-center rounded-full bg-mint px-5 text-sm font-medium text-ink">Book now</span>
-                </div>
-                <div className="mt-4 grid grid-cols-3 gap-4">
-                  {[0, 1, 2].map((i) => <div key={i} className="h-24 rounded-md bg-soft" />)}
-                </div>
-              </div>
-            ) : (
-              <div className="grid gap-6 rounded-lg bg-[#fbf4ea] p-8 md:grid-cols-2 md:p-12">
-                <div>
-                  <p className="ss-card-title text-[#5a3418]">{s.versionB.headline}</p>
-                  <div className="mt-4 h-2.5 w-4/5 rounded bg-[#b08a6e]" />
-                  <div className="mt-2 h-2.5 w-3/5 rounded bg-[#b08a6e]" />
-                  <span className="mt-6 inline-flex min-h-10 items-center rounded-full bg-[#b94e1c] px-5 text-sm font-medium text-white">Call us</span>
-                </div>
-                <div className="grid min-h-40 place-items-center rounded-md bg-[#e9d6bf] text-sm text-[#5a3418]">[Their photo]</div>
-              </div>
-            )}
+            <Shot key={shown.image} src={shown.image} alt={`${s.client} website, version ${v}`} className="aspect-[16/10] rounded-lg bg-ink" />
           </div>
           <div className="flex flex-col gap-4">
             <div className="ss-dark-card">
-              <p className="text-[13px] text-muted-dark">Study 1 of {TOTAL_STUDIES}</p>
-              <p className="mt-2 text-lg font-normal">{s.client} · {s.industry}</p>
-              <p className="text-[14px] text-muted-dark">{s.city}, BC</p>
+              <p className="text-[13px] text-muted-dark">Study {idx + 1} of {studies.length}</p>
+              <p className="mt-2 text-lg font-normal">{s.client}</p>
+              <p className="text-[14px] text-muted-dark">{s.industry}</p>
             </div>
             <div className="ss-dark-card">
-              <p className="text-[13px] text-muted-dark">PageSpeed (mobile)</p>
-              <p className="tnum mt-2 text-[32px] font-light tracking-tight">
-                <span className="text-[#ff9b7a]">{s.beforeScore}</span> <span className="text-muted-dark">→</span> <span className="text-mint">{s.afterScore}</span>
-              </p>
-              <p className="mt-1 text-[13px] text-muted-dark">{v === "A" ? s.versionA.note : s.versionB.note}</p>
+              <p className="text-[13px] text-muted-dark">Two designs, same content</p>
+              <div className="mt-3 grid grid-cols-2 gap-3">
+                {(["A", "B"] as const).map((k) => (
+                  <button key={k} type="button" onClick={() => setV(k)} aria-label={`Show version ${k}`} className={`overflow-hidden rounded-md border-2 ${v === k ? "border-mint" : "border-transparent"}`}>
+                    <Shot src={k === "A" ? s.versionA.image : s.versionB.image} alt="" className="aspect-[16/10]" />
+                  </button>
+                ))}
+              </div>
+              <a href={shown.url} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex min-h-11 items-center text-[14px] text-mint hover:underline">Open version {v} →</a>
             </div>
-            <div className="flex items-center gap-3 rounded-[14px] bg-mint p-6 text-ink">
-              <Check className="text-ink" />
-              <p className="font-medium">Client chose Version [{s.chosen}]</p>
-            </div>
+            {s.chosen && (
+              <div className="flex items-center gap-3 rounded-[14px] bg-mint p-6 text-ink">
+                <Check className="text-ink" />
+                <p className="font-medium">Client chose Version {s.chosen}</p>
+              </div>
+            )}
           </div>
         </div>
 
         <div className="mt-20 flex items-end justify-between gap-4">
           <h3 className="ss-card-title">Their pick, now live</h3>
-          <a href="#work" className="inline-flex min-h-11 items-center text-mint hover:underline">See all work →</a>
+          <a href="/work" className="inline-flex min-h-11 items-center text-mint hover:underline">See all work →</a>
         </div>
         <div className="mt-6 grid gap-6 md:grid-cols-3">
-          {launchedSites.map((site, i) => (
-            <div key={i} className="ss-dark-card !p-4">
-              <div className="grid aspect-[16/10] place-items-center rounded-lg bg-ink text-sm text-muted-dark">[Site screenshot]</div>
-              <p className="mt-4 font-normal">{site.client}</p>
-              <p className="text-[14px] text-muted-dark">{site.industry} · {site.city}</p>
-            </div>
+          {launchedSites.slice(0, 6).map((site) => (
+            <a key={site.url} href={site.url} target="_blank" rel="noopener noreferrer" className="ss-dark-card group block !p-4 hover:border-mint">
+              <Shot src={site.image} alt={`${site.client} website`} className="aspect-[16/10] rounded-lg bg-ink" />
+              <p className="mt-4 font-normal group-hover:text-mint">{site.client}</p>
+              <p className="text-[14px] text-muted-dark">{site.industry}</p>
+            </a>
           ))}
         </div>
       </div>
@@ -243,15 +209,7 @@ function Faq() {
 function Index() {
   return (
     <div className="min-h-screen bg-white">
-      <header className="relative z-20">
-        <nav className="ss-container flex h-20 items-center justify-between" aria-label="Main">
-          <Logo />
-          <div className="hidden items-center gap-8 md:flex">
-            {navLinks.map(([l, h]) => <a key={h} href={h} className="ss-nav-link">{l}</a>)}
-          </div>
-          <a href="#start" className="ss-btn ss-btn-primary !px-4 text-[14px] sm:!px-[22px]">Get my free preview</a>
-        </nav>
-      </header>
+      <SiteHeader />
 
       <main>
         <section className="relative -mt-20 overflow-hidden pb-24 pt-36 md:pb-28">
@@ -354,7 +312,7 @@ function Index() {
                 <p className="text-[18px] font-normal">Want more customers to find you?</p>
                 <p className="text-ink-2">Add SEO after your new site goes live.</p>
               </div>
-              <a href="mailto:[hello@domain]" className="ss-btn ss-btn-ghost">Ask about SEO</a>
+              <a href={`mailto:${CONTACT_EMAIL}`} className="ss-btn ss-btn-ghost">Ask about SEO</a>
             </div>
           </div>
         </section>
@@ -374,21 +332,7 @@ function Index() {
         </section>
       </main>
 
-      <footer className="border-t border-hairline py-12">
-        <div className="ss-container grid gap-8 md:grid-cols-[1fr_auto]">
-          <div>
-            <p className="text-[20px] font-semibold">SwiftSite</p>
-            <p className="mt-2 text-ink-2">Brand-new websites for Canadian small businesses.</p>
-            <p className="ss-small mt-1">Vancouver, BC · [hello@domain]</p>
-          </div>
-          <ul className="grid grid-cols-2 gap-x-8 sm:flex sm:gap-6">
-            {navLinks.map(([l, h]) => <li key={h}><a href={h} className="ss-nav-link inline-block">{l}</a></li>)}
-          </ul>
-        </div>
-        <div className="ss-container mt-8 border-t border-hairline pt-6">
-          <p className="ss-small">© 2026 SwiftSite</p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
