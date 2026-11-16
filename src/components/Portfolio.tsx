@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { portfolioQuery, isStudy, type PortfolioItem } from "@/lib/portfolio";
+import { portfolioQuery, buildPortfolio, type PortfolioItem, type Study } from "@/lib/portfolio";
 
 function Frame({ dark, label, children }: { dark: boolean; label: string; children: React.ReactNode }) {
   return (
@@ -19,16 +19,21 @@ function Img({ src, alt }: { src: string | null; alt: string }) {
     : <div className="aspect-[16/10] w-full rounded-lg bg-soft" />;
 }
 
-function StudyRow({ p, dark }: { p: PortfolioItem; dark: boolean }) {
+function StudyRow({ p, dark }: { p: Study; dark: boolean }) {
   return (
     <article>
       <div className="grid gap-4 md:grid-cols-2">
-        {p.versions!.slice(0, 2).map((v, i) => {
-          const label = `Version ${i === 0 ? "A" : "B"}`;
-          const body = <Frame dark={dark} label={label}><Img src={v.screenshot_url} alt={`${p.title} website, ${label}`} /></Frame>;
+        {p.versions.map((v) => {
+          const label = `Version ${v.label}`;
+          const body = (
+            <div className="relative">
+              <Frame dark={dark} label={label}><Img src={v.image} alt={`${p.title} website, ${label}`} /></Frame>
+              {v.chosen && <span className="absolute right-3 top-3 rounded-full bg-mint px-3 py-1 text-[12px] font-medium text-ink">Client chose {label}</span>}
+            </div>
+          );
           return v.url
-            ? <a key={i} href={v.url} target="_blank" rel="noopener noreferrer" className={`block rounded-[14px] transition ${dark ? "hover:ring-2 hover:ring-mint" : "hover:ring-2 hover:ring-blue"}`}>{body}</a>
-            : <div key={i}>{body}</div>;
+            ? <a key={v.label} href={v.url} target="_blank" rel="noopener noreferrer" className={`block rounded-[14px] transition ${dark ? "hover:ring-2 hover:ring-mint" : "hover:ring-2 hover:ring-blue"}`}>{body}</a>
+            : <div key={v.label}>{body}</div>;
         })}
       </div>
       <p className="mt-4 text-lg font-normal">{p.title}</p>
@@ -69,10 +74,10 @@ export function Portfolio({ variant }: { variant: "home" | "all" }) {
   const dark = variant === "home";
   const { data, isPending, isError } = useQuery(portfolioQuery);
   if (isError || (data && data.length === 0)) return null;
-  const studies = (data ?? []).filter(isStudy);
-  const others = (data ?? []).filter((p) => !isStudy(p));
-  const shownStudies = variant === "home" ? studies.slice(0, 6) : studies;
-  const shownOthers = variant === "home" ? others.slice(0, 6) : others;
+  const { studies, singles } = buildPortfolio(data ?? []);
+  const homeStudies = studies.filter((s) => s.featured);
+  const shownStudies = variant === "home" ? (homeStudies.length ? homeStudies : studies).slice(0, 6) : studies;
+  const shownOthers = variant === "home" ? [] : singles;
   const muted = dark ? "text-muted-dark" : "text-muted-ink";
 
   return (
@@ -88,7 +93,7 @@ export function Portfolio({ variant }: { variant: "home" | "all" }) {
 
         <div className="mt-10">
           {isPending ? <Skeleton dark={dark} /> : (
-            <div className="space-y-14">{shownStudies.map((p) => <StudyRow key={p.id} p={p} dark={dark} />)}</div>
+            <div className="space-y-14">{shownStudies.map((p) => <StudyRow key={p.key} p={p} dark={dark} />)}</div>
           )}
         </div>
 
