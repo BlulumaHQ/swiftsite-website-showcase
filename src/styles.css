@@ -206,3 +206,19 @@ body { font-family: var(--font-sans); font-weight: 300; font-feature-settings: "
 .ss-nav-link:hover { color: var(--blue); }
 .ss-toggle { min-height: 44px; padding: 0 20px; border-radius: 9999px; font-weight: 500; font-size: 14px; border: 1px solid var(--dark-border); color: var(--muted-dark); }
 .ss-toggle[aria-pressed="true"] { background: #fff; color: var(--ink); border-color: #fff; }
+
+/* Mobile readability: bump small text sizes on phones */
+@media (max-width: 640px) {
+  body { font-size: 17px; line-height: 1.6; }
+  .ss-lead { font-size: 18px; }
+  .ss-small, .ss-error { font-size: 15px; }
+  .ss-eyebrow { font-size: 13px; }
+  .ss-card-title { font-size: 22px; }
+  .ss-btn, .ss-toggle, .ss-nav-link { font-size: 16px; }
+  .text-\[11px\] { font-size: 12px; }
+  .text-\[12px\] { font-size: 13px; }
+  .text-\[13px\] { font-size: 14.5px; }
+  .text-\[14px\] { font-size: 15.5px; }
+  .text-\[15px\] { font-size: 16.5px; }
+  .text-\[17px\] { font-size: 18px; }
+}
