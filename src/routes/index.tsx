@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { UrlForm } from "@/components/UrlForm";
 import { studies, launchedSites } from "@/data/work";
-import { SITE_URL, CONTACT_EMAIL } from "@/lib/site";
+import { SITE_URL, CONTACT_EMAIL, OG_IMAGE } from "@/lib/site";
 import { SiteHeader, SiteFooter, Shot } from "@/components/SiteChrome";
 
 const TITLE = "SwiftSite — Brand-new website for $99 CAD";
@@ -17,6 +17,12 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: DESC },
       { property: "og:url", content: SITE_URL },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "SwiftSite — Same business. Brand-new website. $99." },
+      { property: "og:site_name", content: "SwiftSite" },
+      { name: "twitter:image", content: OG_IMAGE },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: SITE_URL }],

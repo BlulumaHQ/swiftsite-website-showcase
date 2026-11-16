@@ -12,7 +12,7 @@ export function Logo({ variant = "dark" }: { variant?: "dark" | "light" }) {
   const src = variant === "light" ? "/images/swiftsite-logo-white.svg" : "/images/swiftsite-logo-dark.svg";
   return (
     <a href="/" className="inline-flex min-h-11 items-center" aria-label="SwiftSite home">
-      <img src={src} alt="SwiftSite" width={151} height={38} className="h-[38px] w-auto" />
+      <img src={src} alt="SwiftSite" width={152} height={38} className="h-[38px] w-auto" />
     </a>
   );
 }
