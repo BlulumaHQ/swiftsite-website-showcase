@@ -62,7 +62,7 @@ export function buildPortfolio(rows: PortfolioItem[]): { studies: Study[]; singl
     studies.push({
       key: r.pair_title!, title: r.pair_title!, category: sorted.find((v) => v.category)?.category ?? null,
       featured: g.some((v) => v.featured_on?.includes("swiftsite")),
-      versions: sorted.map((v, i) => ({ label: v.pair_label!, url: v.live_url, image: v.featured_image_url ?? v.versions?.[0]?.screenshot_url ?? null, chosen: one && real[i] })),
+      versions: sorted.map((v, i) => ({ label: v.pair_label!, url: v.live_url, image: v.featured_image_url ?? v.versions?.[0]?.screenshot_url ?? null, chosen: one && real[i] === true })),
     });
   }
   studies.sort((a, b) => Number(b.featured) - Number(a.featured));
