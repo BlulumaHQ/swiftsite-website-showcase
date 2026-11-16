@@ -48,8 +48,10 @@ export function SiteFooter() {
           ))}
         </ul>
       </div>
-      <div className="ss-container mt-8 border-t border-dark-border pt-6">
-        <p className="text-[14px] text-muted-dark">© 2026 SwiftSite</p>
+      <div className="ss-container">
+        <div className="mt-10 border-t border-dark-border pt-6">
+          <p className="text-[14px] text-muted-dark">© 2026 SwiftSite</p>
+        </div>
       </div>
     </footer>
   );
