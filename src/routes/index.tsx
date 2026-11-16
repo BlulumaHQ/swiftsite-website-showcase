@@ -132,7 +132,7 @@ const faqs = [
 
 function TwoDirections() {
   const [v, setV] = useState<"A" | "B">("A");
-  const s = studies[0];
+  const s = studies[0]!;
   return (
     <section id="work" className="ss-section bg-ink text-white">
       <div className="ss-container">
