@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { UrlForm } from "@/components/UrlForm";
-import { studies, launchedSites } from "@/data/work";
+import { studies } from "@/data/work";
+import { Portfolio } from "@/components/Portfolio";
 import { SITE_URL, CONTACT_EMAIL, OG_IMAGE } from "@/lib/site";
 import { SiteHeader, SiteFooter, Shot } from "@/components/SiteChrome";
 
@@ -104,85 +105,7 @@ const faqs = [
 ];
 
 function TwoDirections() {
-  const [idx, setIdx] = useState(0);
-  const [v, setV] = useState<"A" | "B">("A");
-  const s = studies[idx]!;
-  const shown = v === "A" ? s.versionA : s.versionB;
-  const pick = (i: number) => {
-    setIdx(i);
-    setV("A");
-  };
-  return (
-    <section id="work" className="ss-section bg-ink text-white">
-      <div className="ss-container">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-[640px]">
-            <p className="ss-eyebrow !text-mint">Two directions</p>
-            <h2 className="ss-h2 mt-4">Every customer sees two real versions. Then they choose.</h2>
-          </div>
-          <div className="flex gap-2" role="group" aria-label="Choose version">
-            {(["A", "B"] as const).map((k) => (
-              <button key={k} type="button" className="ss-toggle" aria-pressed={v === k} onClick={() => setV(k)}>Version {k}</button>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-10 flex flex-wrap gap-2" role="group" aria-label="Choose a project">
-          {studies.map((st, i) => (
-            <button key={st.id} type="button" className="ss-toggle" aria-pressed={idx === i} onClick={() => pick(i)}>{st.client}</button>
-          ))}
-        </div>
-
-        <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_320px]">
-          <div className="rounded-[14px] border border-dark-border bg-dark-card p-4" aria-live="polite">
-            <div className="mb-3 flex items-center gap-1.5">
-              <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-dark-border" /><span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-dark-border" /><span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-dark-border" />
-              <span className="ml-3 text-[13px] text-muted-dark">{s.client} · Version {v}</span>
-            </div>
-            <Shot key={shown.image} src={shown.image} alt={`${s.client} website, version ${v}`} className="aspect-[16/10] rounded-lg bg-ink" />
-          </div>
-          <div className="flex flex-col gap-4">
-            <div className="ss-dark-card">
-              <p className="text-[13px] text-muted-dark">Study {idx + 1} of {studies.length}</p>
-              <p className="mt-2 text-lg font-normal">{s.client}</p>
-              <p className="text-[14px] text-muted-dark">{s.industry}</p>
-            </div>
-            <div className="ss-dark-card">
-              <p className="text-[13px] text-muted-dark">Two designs, same content</p>
-              <div className="mt-3 grid grid-cols-2 gap-3">
-                {(["A", "B"] as const).map((k) => (
-                  <button key={k} type="button" onClick={() => setV(k)} aria-label={`Show version ${k}`} className={`overflow-hidden rounded-md border-2 ${v === k ? "border-mint" : "border-transparent"}`}>
-                    <Shot src={k === "A" ? s.versionA.image : s.versionB.image} alt="" className="aspect-[16/10]" />
-                  </button>
-                ))}
-              </div>
-              <a href={shown.url} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex min-h-11 items-center text-[14px] text-mint hover:underline">Open version {v} →</a>
-            </div>
-            {s.chosen && (
-              <div className="flex items-center gap-3 rounded-[14px] bg-mint p-6 text-ink">
-                <Check className="text-ink" />
-                <p className="font-medium">Client chose Version {s.chosen}</p>
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="mt-20 flex items-end justify-between gap-4">
-          <h3 className="ss-card-title">Their pick, now live</h3>
-          <a href="/work" className="inline-flex min-h-11 items-center text-mint hover:underline">See all work →</a>
-        </div>
-        <div className="mt-6 grid gap-6 md:grid-cols-3">
-          {launchedSites.slice(0, 6).map((site) => (
-            <a key={site.url} href={site.url} target="_blank" rel="noopener noreferrer" className="ss-dark-card group block !p-4 hover:border-mint">
-              <Shot src={site.image} alt={`${site.client} website`} className="aspect-[16/10] rounded-lg bg-ink" />
-              <p className="mt-4 font-normal group-hover:text-mint">{site.client}</p>
-              <p className="text-[14px] text-muted-dark">{site.industry}</p>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+  return <Portfolio variant="home" />;
 }
 
 function Faq() {
