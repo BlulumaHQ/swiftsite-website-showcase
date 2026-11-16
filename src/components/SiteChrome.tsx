@@ -7,15 +7,12 @@ export const navLinks = [
   ["FAQ", "/#faq"],
 ] as const;
 
-export function Logo() {
+/** variant "dark" = navy wordmark for light backgrounds; "light" = white wordmark for dark backgrounds. */
+export function Logo({ variant = "dark" }: { variant?: "dark" | "light" }) {
+  const src = variant === "light" ? "/images/swiftsite-logo-white.svg" : "/images/swiftsite-logo-dark.svg";
   return (
-    <a href="/" className="flex items-center gap-2.5 min-h-11" aria-label="SwiftSite home">
-      <span className="grid h-9 w-9 place-items-center rounded-[10px] bg-ink">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--mint)" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true">
-          <path d="M17 6.5C15.8 5.3 14.2 4.8 12.3 4.8 9.6 4.8 7.6 6.2 7.6 8.3c0 4.7 9.2 2.6 9.2 7.4 0 2.2-2.1 3.6-4.9 3.6-2.1 0-3.9-.7-5.1-2" />
-        </svg>
-      </span>
-      <span className="text-[20px] font-semibold tracking-tight text-ink">SwiftSite</span>
+    <a href="/" className="inline-flex min-h-11 items-center" aria-label="SwiftSite home">
+      <img src={src} alt="SwiftSite" width={151} height={38} className="h-[38px] w-auto" />
     </a>
   );
 }
@@ -36,21 +33,23 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-hairline py-12">
+    <footer className="bg-ink py-14 text-white">
       <div className="ss-container grid gap-8 md:grid-cols-[1fr_auto]">
         <div>
-          <p className="text-[20px] font-semibold">SwiftSite</p>
-          <p className="mt-2 text-ink-2">Brand-new websites for Canadian small businesses.</p>
-          <p className="ss-small mt-1">
-            Vancouver, BC · <a href={`mailto:${CONTACT_EMAIL}`} className="text-ink-2 hover:text-blue">{CONTACT_EMAIL}</a>
+          <Logo variant="light" />
+          <p className="mt-4 text-[#c3d3ea]">Brand-new websites for Canadian small businesses.</p>
+          <p className="mt-1 text-[14px] text-muted-dark">
+            Vancouver, BC · <a href={`mailto:${CONTACT_EMAIL}`} className="text-[#c3d3ea] hover:text-mint">{CONTACT_EMAIL}</a>
           </p>
         </div>
         <ul className="grid grid-cols-2 gap-x-8 sm:flex sm:gap-6">
-          {navLinks.map(([l, h]) => <li key={h}><a href={h} className="ss-nav-link inline-block">{l}</a></li>)}
+          {navLinks.map(([l, h]) => (
+            <li key={h}><a href={h} className="inline-block py-3 text-[15px] text-[#c3d3ea] hover:text-mint">{l}</a></li>
+          ))}
         </ul>
       </div>
-      <div className="ss-container mt-8 border-t border-hairline pt-6">
-        <p className="ss-small">© 2026 SwiftSite</p>
+      <div className="ss-container mt-8 border-t border-dark-border pt-6">
+        <p className="text-[14px] text-muted-dark">© 2026 SwiftSite</p>
       </div>
     </footer>
   );
