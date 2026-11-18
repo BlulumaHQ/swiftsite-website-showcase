@@ -4,7 +4,7 @@ import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 import { Portfolio } from "@/components/Portfolio";
 
 const TITLE = "Work — SwiftSite";
-const DESC = "Real websites we rebuilt: two-direction case studies and every site our clients picked and launched.";
+const DESC = "Real small business websites rebuilt by SwiftSite and launched for our clients in Canada and beyond.";
 
 export const Route = createFileRoute("/work")({
   head: () => ({
@@ -33,17 +33,17 @@ function Work() {
     <div className="min-h-screen bg-white">
       <SiteHeader />
       <main>
-        <section className="ss-container pb-16 pt-12">
+        <section className="ss-container pb-12 pt-12 md:pt-16">
           <p className="ss-eyebrow">Work</p>
-          <h1 className="ss-h1 mt-4 max-w-[860px]">Real businesses. Two directions each.</h1>
-          <p className="ss-lead mt-6 max-w-[640px]">Every project starts with two complete designs. Here are both versions side by side, and every site our clients picked and launched.</p>
+          <h1 className="ss-h1 mt-4 max-w-[860px]">Real businesses. Brand-new websites.</h1>
+          <p className="ss-lead mt-6 max-w-[640px]">Every site here was rebuilt from the client's own words and photos, checked by a designer, and launched on their domain.</p>
         </section>
 
         <Portfolio variant="all" />
 
         <section className="ss-section text-center">
           <div className="ss-container flex flex-col items-center">
-            <h2 className="ss-h2 max-w-[720px]">See your two new designs before you spend a dollar.</h2>
+            <h2 className="ss-h2 max-w-[720px]">See your new website before you spend a dollar.</h2>
             <a href="/#start" className="ss-btn ss-btn-primary mt-8">Get my free preview</a>
           </div>
         </section>

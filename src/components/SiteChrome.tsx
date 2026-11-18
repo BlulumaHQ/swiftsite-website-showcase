@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { CONTACT_EMAIL } from "@/lib/site";
 
 export const navLinks = [
@@ -18,28 +19,73 @@ export function Logo({ variant = "dark" }: { variant?: "dark" | "light" }) {
 }
 
 export function SiteHeader() {
+  const [open, setOpen] = useState(false);
   return (
-    <header className="relative z-20">
-      <nav className="ss-container flex h-20 items-center justify-between" aria-label="Main">
+    <header className="relative z-30">
+      <nav className="ss-container flex h-20 items-center justify-between gap-3" aria-label="Main">
         <Logo />
         <div className="hidden items-center gap-8 md:flex">
           {navLinks.map(([l, h]) => <a key={h} href={h} className="ss-nav-link">{l}</a>)}
         </div>
-        <a href="/#start" className="ss-btn ss-btn-primary !px-4 text-[14px] sm:!px-[22px]">Get my free preview</a>
+        <div className="flex items-center gap-2">
+          <a href="/#start" className="ss-btn ss-btn-primary hidden sm:inline-flex">Get my free preview</a>
+          <button
+            type="button"
+            className="grid h-11 w-11 place-items-center rounded-full border border-hairline bg-white text-ink md:hidden"
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen(!open)}
+          >
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+              {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+            </svg>
+          </button>
+        </div>
       </nav>
+      {open && (
+        <div id="mobile-menu" className="ss-container md:hidden">
+          <ul className="rounded-[14px] border border-hairline bg-white p-2 shadow-lg">
+            {navLinks.map(([l, h]) => (
+              <li key={h}><a href={h} onClick={() => setOpen(false)} className="block rounded-lg px-4 py-3 text-[17px] text-ink hover:bg-soft">{l}</a></li>
+            ))}
+            <li className="p-2"><a href="/#start" onClick={() => setOpen(false)} className="ss-btn ss-btn-primary w-full">Get my free preview</a></li>
+          </ul>
+        </div>
+      )}
     </header>
+  );
+}
+
+/** Mobile-only bottom bar with the main CTA; appears after the hero, hides near the form. */
+export function StickyCta() {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const onScroll = () => {
+      const start = document.getElementById("start");
+      const nearForm = start ? start.getBoundingClientRect().top < window.innerHeight : false;
+      setShow(window.scrollY > 600 && !nearForm);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return (
+    <div className={`fixed inset-x-0 bottom-0 z-40 border-t border-hairline bg-white/95 px-5 py-3 backdrop-blur transition-transform md:hidden ${show ? "translate-y-0" : "translate-y-full"}`} aria-hidden={!show}>
+      <a href="/#start" tabIndex={show ? 0 : -1} className="ss-btn ss-btn-primary w-full">Get my free preview · $99</a>
+    </div>
   );
 }
 
 export function SiteFooter() {
   return (
-    <footer className="bg-ink py-14 text-white">
+    <footer className="bg-ink pb-24 pt-14 text-white md:pb-14">
       <div className="ss-container grid gap-8 md:grid-cols-[1fr_auto]">
         <div>
           <Logo variant="light" />
           <p className="mt-4 text-[#c3d3ea]">Brand-new websites for Canadian small businesses.</p>
           <p className="mt-1 text-[14px] text-muted-dark">
-            Vancouver, BC · <a href={`mailto:${CONTACT_EMAIL}`} className="text-[#c3d3ea] hover:text-mint">{CONTACT_EMAIL}</a>
+            Vancouver, BC · <a href={`mailto:${CONTACT_EMAIL}`} className="inline-block py-3 text-[#c3d3ea] hover:text-mint">{CONTACT_EMAIL}</a>
           </p>
         </div>
         <ul className="grid grid-cols-2 gap-x-8 sm:flex sm:gap-6">

@@ -39,7 +39,7 @@ export type StudyVersion = { label: string; url: string | null; image: string | 
 export type Study = { key: string; title: string; category: string | null; featured: boolean; versions: StudyVersion[] };
 
 const STAGING = [".netlify.app", ".workers.dev", ".pages.dev", ".lovable.app", ".bluluma.com"];
-const isRealDomain = (u: string | null) => !!u && !STAGING.some((d) => u.toLowerCase().includes(d));
+export const isRealDomain = (u: string | null) => !!u && !STAGING.some((d) => u.toLowerCase().includes(d));
 
 /** Group A/B rows by pair_title into studies; everything else is a single. Input order is preserved. */
 export function buildPortfolio(rows: PortfolioItem[]): { studies: Study[]; singles: PortfolioItem[] } {
