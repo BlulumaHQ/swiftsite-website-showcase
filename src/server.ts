@@ -61,7 +61,7 @@ async function handleLead(request: Request): Promise<Response> {
     return json(400, { ok: false });
   }
   // Bots: honeypot filled or submitted faster than 2 seconds → pretend success, drop it.
-  if (f["website_hp"] || (Number(f["_t"]) && Date.now() - Number(f["_t"]) < 2000)) return json(200, { ok: true });
+  if (f["website_hp"] || (Number(f["_t"]) && Date.now() - Number(f["_t"]) < 1000)) return json(200, { ok: true });
   const url = (f["url"] || "").trim();
   if (!url) return json(400, { ok: false });
   const email = (f["email"] || "").trim();
