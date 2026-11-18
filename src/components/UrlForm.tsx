@@ -1,4 +1,4 @@
-import { useId, useState, type FormEvent } from "react";
+import { useId, useRef, useState, type FormEvent } from "react";
 
 const DOMAIN_RE = /^(https?:\/\/)?(www\.)?[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}(\/.*)?$/i;
 
@@ -8,16 +8,31 @@ export function UrlForm() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [done, setDone] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [hp, setHp] = useState("");
+  const startedAt = useRef(Date.now());
 
-  function onSubmit(e: FormEvent) {
+  async function onSubmit(e: FormEvent) {
     e.preventDefault();
     if (!DOMAIN_RE.test(url.trim())) {
       setError("Please enter a website address, like yourbusiness.ca");
       return;
     }
     setError("");
-    // TODO: wire submit handler to backend (send url + optional email).
-    setDone(true);
+    setSending(true);
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ url: url.trim(), email: email.trim(), website_hp: hp, _t: startedAt.current }),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      setDone(true);
+    } catch {
+      setError("Something went wrong. Please try again, or email info@swiftsite.ca");
+    } finally {
+      setSending(false);
+    }
   }
 
   if (done) {
@@ -45,7 +60,7 @@ export function UrlForm() {
           aria-invalid={!!error}
           className="ss-urlbar-input"
         />
-        <button type="submit" className="ss-btn ss-btn-primary">See my new site</button>
+        <button type="submit" disabled={sending} className="ss-btn ss-btn-primary">{sending ? "Sending…" : "See my new site"}</button>
       </div>
       {url.trim().length > 0 && (
         <div className="mt-3">
@@ -53,6 +68,7 @@ export function UrlForm() {
           <input id={`${id}-email`} type="email" placeholder="you@yourbusiness.ca" value={email} onChange={(e) => setEmail(e.target.value)} className="ss-input" />
         </div>
       )}
+      <input type="text" name="website_hp" value={hp} onChange={(e) => setHp(e.target.value)} tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-9999px" }} />
       {error && <p className="ss-error mt-2" role="alert">{error}</p>}
     </form>
   );
