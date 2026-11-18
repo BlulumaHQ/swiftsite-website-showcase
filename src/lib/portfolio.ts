@@ -15,7 +15,7 @@ export type PortfolioVersion = { label: string | null; url: string | null; scree
 export type PortfolioItem = {
   id: string; title: string; slug: string | null; excerpt: string | null; featured_image_url: string | null;
   is_featured: boolean | null; sort_order: number | null; category: string | null; live_url: string | null;
-  project_year: number | null; featured_on: string[] | null; pair_title: string | null; pair_label: string | null; versions: PortfolioVersion[] | null; version_count: number | null;
+  project_year: number | null; homepage_full_url: string | null; featured_on: string[] | null; pair_title: string | null; pair_label: string | null; versions: PortfolioVersion[] | null; version_count: number | null;
 };
 
 export const portfolioQuery = queryOptions({
@@ -25,7 +25,7 @@ export const portfolioQuery = queryOptions({
   queryFn: async (): Promise<PortfolioItem[]> => {
     const { data, error } = await cms()
       .from("portfolio_feed")
-      .select("id,title,slug,excerpt,featured_image_url,is_featured,sort_order,show_on,category,live_url,services,project_year,versions,version_count,featured_on,pair_title,pair_label")
+      .select("id,title,slug,excerpt,featured_image_url,homepage_full_url,is_featured,sort_order,show_on,category,live_url,services,project_year,versions,version_count,featured_on,pair_title,pair_label")
       .contains("show_on", ["swiftsite"])
       .order("is_featured", { ascending: false })
       .order("sort_order", { ascending: true })
@@ -62,7 +62,7 @@ export function buildPortfolio(rows: PortfolioItem[]): { studies: Study[]; singl
     studies.push({
       key: r.pair_title!, title: r.pair_title!, category: sorted.find((v) => v.category)?.category ?? null,
       featured: g.some((v) => v.featured_on?.includes("swiftsite")),
-      versions: sorted.map((v, i) => ({ label: v.pair_label!, url: v.live_url, image: v.featured_image_url ?? v.versions?.[0]?.screenshot_url ?? null, chosen: one && real[i] === true })),
+      versions: sorted.map((v, i) => ({ label: v.pair_label!, url: v.live_url, image: v.homepage_full_url ?? v.featured_image_url ?? v.versions?.[0]?.screenshot_url ?? null, chosen: one && real[i] === true })),
     });
   }
   studies.sort((a, b) => Number(b.featured) - Number(a.featured));

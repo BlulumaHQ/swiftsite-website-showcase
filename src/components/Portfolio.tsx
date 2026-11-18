@@ -1,13 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { portfolioQuery, buildPortfolio, isRealDomain } from "@/lib/portfolio";
+import { ScrollShot } from "@/components/ScrollShot";
 
 type Final = { key: string; title: string; category: string | null; image: string | null; url: string | null; live: boolean };
-
-function Img({ src, alt }: { src: string | null; alt: string }) {
-  return src
-    ? <img src={src} alt={alt} loading="lazy" decoding="async" className="block aspect-[16/10] w-full rounded-lg object-cover object-top" />
-    : <div className="aspect-[16/10] w-full rounded-lg bg-soft" />;
-}
 
 function domainOf(u: string) {
   try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return u; }
@@ -17,13 +12,13 @@ function Card({ p, dark, className = "" }: { p: Final; dark: boolean; className?
   const muted = dark ? "text-muted-dark" : "text-muted-ink";
   const inner = (
     <>
-      <Img src={p.image} alt={`${p.title} website`} />
+      <ScrollShot src={p.image} alt={`${p.title} website, full homepage`} dark={dark} />
       <p className={`mt-4 text-[17px] font-normal ${p.live ? (dark ? "group-hover:text-mint" : "group-hover:text-blue") : ""}`}>{p.title}</p>
       {p.category && <p className={`text-[14px] ${muted}`}>{p.category}</p>}
       {p.live && p.url && <p className={`mt-2 text-[14px] ${dark ? "text-mint" : "text-blue"}`}>See the live site · {domainOf(p.url)} →</p>}
     </>
   );
-  const cls = `${dark ? "ss-dark-card" : "ss-card"} group block !p-4 ${className}`;
+  const cls = `${dark ? "ss-dark-card" : "ss-card"} ss-shot-card group block !p-4 ${className}`;
   return p.live && p.url
     ? <a href={p.url} target="_blank" rel="noopener noreferrer" className={`${cls} ${dark ? "hover:border-mint" : "hover:border-blue"}`}>{inner}</a>
     : <div className={cls}>{inner}</div>;
@@ -33,7 +28,7 @@ function Skeleton({ dark }: { dark: boolean }) {
   const b = dark ? "bg-dark-card" : "bg-soft";
   return (
     <div aria-hidden="true" className="grid animate-pulse gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {[0, 1, 2].map((i) => <div key={i} className={`aspect-[16/12] rounded-[14px] ${b}`} />)}
+      {[0, 1, 2].map((i) => <div key={i} className={`aspect-[4/5] rounded-[14px] ${b}`} />)}
     </div>
   );
 }
@@ -51,7 +46,7 @@ export function Portfolio({ variant }: { variant: "home" | "all" }) {
     return { key: s.key, title: s.title, category: s.category, image: v.image, url: v.url, live: isRealDomain(v.url) };
   });
   const fromSingles: Final[] = singles.map((p) => ({
-    key: p.id, title: p.title, category: p.category, image: p.featured_image_url, url: p.live_url, live: isRealDomain(p.live_url),
+    key: p.id, title: p.title, category: p.category, image: p.homepage_full_url ?? p.featured_image_url, url: p.live_url, live: isRealDomain(p.live_url),
   }));
   const all = [...fromStudies, ...fromSingles];
   const shown = variant === "home" ? all.slice(0, 6) : all;
