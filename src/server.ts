@@ -65,6 +65,7 @@ async function handleLead(request: Request): Promise<Response> {
   const url = (f["url"] || "").trim();
   if (!url) return json(400, { ok: false });
   const email = (f["email"] || "").trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return json(400, { ok: false });
   try {
     const res = await fetch(N8N_LEAD_WEBHOOK, {
       method: "POST",
