@@ -28,7 +28,7 @@ export function SiteHeader() {
           {navLinks.map(([l, h]) => <a key={h} href={h} className="ss-nav-link">{l}</a>)}
         </div>
         <div className="flex items-center gap-2">
-          <a href="/#start" className="ss-btn ss-btn-primary hidden sm:inline-flex">Get my free preview</a>
+          <span className="hidden sm:block"><a href="/#start" className="ss-btn ss-btn-primary">Get my free preview</a></span>
           <button
             type="button"
             className="grid h-11 w-11 place-items-center rounded-full border border-hairline bg-white text-ink md:hidden"
