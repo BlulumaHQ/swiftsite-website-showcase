@@ -117,6 +117,10 @@ const testimonials = [
     quote: "Since the new website launched, our customers keep telling us how good it looks. Hearing that from them made me really happy. Thank you for the professional design.",
     name: "Golden Chen", company: "NuEra Nutraceuticals", url: "https://nueranutra.com/",
   },
+  {
+    quote: "Sony Lin has managed our professional websites for years, and he’s always been punctual, dependable, and professional. Thank you, Sony, for taking such good care of our websites. I’d recommend him without hesitation to anyone looking for a web designer.",
+    name: "Patrick Wu", company: "Friendly Dental Centre · Vancouver, BC", url: "https://friendlydental.ca/",
+  },
 ];
 
 const whyCheap = [
@@ -149,7 +153,7 @@ function Testimonials() {
     <section className="ss-section bg-soft" aria-labelledby="clients-h">
       <div className="ss-container">
         <h2 id="clients-h" className="ss-h2 text-center">What our clients say</h2>
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
           {testimonials.map((t) => (
             <figure key={t.name} className="ss-card flex flex-col">
               <blockquote className="flex-1 text-[17px] leading-relaxed text-ink">&ldquo;{t.quote}&rdquo;</blockquote>
