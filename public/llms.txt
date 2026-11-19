@@ -1,0 +1,33 @@
+# SwiftSite
+
+> SwiftSite rebuilds a small business's existing website into a brand-new, fast, mobile-ready design for $99 CAD. AI reads the current site and rebuilds it from the business's own words and photos, a real designer checks it, and the owner sees the new website free within 48 hours — paying only if they love it. Hosting and care is $15/month (or $165/year) and is required with every SwiftSite website.
+
+SwiftSite is for Canadian small businesses that already have a website and want a fresh, modern look without meetings, questionnaires or designer back-and-forth. Every website is reviewed by Sony Lin, Founder & Lead Designer, who has built 500+ websites over 20 years for small businesses, clinics, contractors and restaurants in Vancouver.
+
+## How it works
+
+1. Paste your current website address. No credit card needed.
+2. Within 48 hours, get a brand-new design built from your own words, photos and pages.
+3. Love it? Pay $99, ask for tweaks by email, and SwiftSite puts it live on your domain. Don't? You pay nothing.
+
+## Pricing (CAD)
+
+- New website — $99 one time: a brand-new website rebuilt from your current one; your words, photos and pages moved over; mobile-ready and fast-loading; tweaks by email before launch; connected to your domain with email untouched.
+- Hosting & care — $15/month, or $165/year (1 month free): fast, secure hosting with SSL, backups and security updates, small text and photo updates. Required with every SwiftSite website. Month-to-month, cancel anytime; the plan runs to the end of the paid period with no partial refunds.
+- SEO can be added after the new site goes live.
+
+## Good to know
+
+- Ownership: the client owns the website. Their domain and email were always theirs, and if they cancel, SwiftSite sends them the website files.
+- Domain and email: the domain stays where it is and email keeps working; only the website is pointed to the new design.
+- Scope: SwiftSite rebuilds informational websites. Existing booking or ordering systems are linked from the new site; custom features are quoted separately.
+- Speed: lean, modern code with no plugins or page builders, images compressed for phones, served from a fast global network.
+
+## Key pages
+
+- [Home](https://swiftsite.ca/): the offer, how it works, pricing, FAQ and the free preview form.
+- [Work](https://swiftsite.ca/work): real small business websites rebuilt by SwiftSite.
+
+## Contact
+
+- Email: info@swiftsite.ca
