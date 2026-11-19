@@ -2,12 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { UrlForm } from "@/components/UrlForm";
 import { studies } from "@/data/work";
-import { Portfolio } from "@/components/Portfolio";
+import { BeforeAfter } from "@/components/BeforeAfter";
 import { SITE_URL, CONTACT_EMAIL, OG_IMAGE } from "@/lib/site";
 import { SiteHeader, SiteFooter, StickyCta } from "@/components/SiteChrome";
 
 const TITLE = "SwiftSite — Brand-new website for $99 CAD";
-const DESC = "AI rebuilds your small business website into a brand-new design, checked by a real designer. See it free, then launch it for $99 CAD.";
+const DESC = "AI rebuilds your small business website into a brand-new design, checked by a real designer. See it free, then launch it for a $99 CAD setup plus $25/month all-in hosting & care.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -91,16 +91,17 @@ const trustItems = ["Every site checked by a real designer", "Based in Vancouver
 const steps = [
   ["01", "Paste your website", "Our AI reads your current site and pulls your services, photos, hours and contact details. You don't prepare anything."],
   ["02", "Get your new website", "A real, clickable website built from your content, checked by a designer before it reaches your inbox."],
-  ["03", "Love it? Go live.", "Pay $99, ask for tweaks by email, and we put it live on your domain. Your email keeps working."],
+  ["03", "Love it? Go live.", "Pay the $99 setup, ask for tweaks by email, and we put it live on your domain. Your email keeps working. You never touch the technical stuff."],
 ];
 
 const faqs = [
-  ["Is it really $99?", "Yes. $99 to build and launch your new website, then $15/month (or $165/year) for hosting and care. You see your new website before you pay anything."],
-  ["What if I don't like it?", "Then you pay nothing. No credit card is needed for the preview."],
-  ["Do I have to pay monthly?", "Yes. Every SwiftSite website is hosted and looked after by us for $15/month, or $165/year (1 month free). It's month-to-month and you can cancel anytime. Your plan runs to the end of the period you've paid for, with no partial refunds."],
-  ["Who owns the website?", "You do. Your domain and email were always yours, and if you ever cancel, we send you your website files."],
+  ["Is it really $99?", "Yes. $99 is a one-time setup fee to rebuild and launch your new website. After that, hosting & care is $25/month (or $250/year, 2 months free). You see your new website before you pay anything."],
+  ["Why is it so cheap?", "Because most of the work is automated. Our AI reads your current website and rebuilds it in hours instead of weeks, with no meetings or questionnaires. What isn't automated is the design: Sony Lin, our lead designer with 20 years and 500+ websites behind him, checks every page before it reaches you. Fast because of AI, good because of a real designer."],
+  ["What if I don't like it?", "Then you pay nothing. Your preview is free and no credit card is needed."],
+  ["Do I have to pay monthly?", "Yes. Every SwiftSite website is hosted and looked after by us for $25/month, or $250/year. It's all-in: secure hosting, backups, security updates and up to 2 small edits a month. Month-to-month, cancel anytime. Your plan runs to the end of the period you've paid for, with no partial refunds."],
+  ["Do I need to know anything technical?", "No. We handle the hosting, the updates and the setup on your domain. Need a photo or some text changed? Just email us."],
+  ["Who owns the website?", "You do. Your domain and email were always yours and stay yours. If you ever cancel, we send you your website files."],
   ["Will my email or domain break?", "No. Your domain stays where it is and your email keeps working. We only point your website to the new design."],
-  ["Who checks the AI's work?", "Sony Lin, our lead designer, reviews every website before it is sent to you."],
   ["Can you add online booking or a store?", "SwiftSite rebuilds informational websites. If you already use a booking or ordering system, we link to it from your new site. Custom features are quoted separately."],
 ];
 
@@ -126,7 +127,7 @@ const testimonials = [
 const whyCheap = [
   ["AI does the heavy lifting", "It reads your current site and rebuilds it in hours, not weeks. No meetings, no questionnaires."],
   ["A designer checks every page", "Sony Lin, with 500+ websites over 20 years, reviews your site before you ever see it."],
-  ["You only pay if you love it", "Your preview is a real, live website. Like it? Pay $99. Don't? Walk away, no charge."],
+  ["You only pay if you love it", "Your preview is a real, live website. Like it? Pay the $99 setup. Don't? Walk away, no charge."],
 ];
 
 function WhyCheap() {
@@ -187,10 +188,6 @@ function Founder() {
   );
 }
 
-function TwoDirections() {
-  return <Portfolio variant="home" />;
-}
-
 function Faq() {
   const [open, setOpen] = useState<number | null>(0);
   return (
@@ -240,9 +237,9 @@ function Index() {
               <h1 className="ss-h1 mt-6">
                 Same business.<br />Brand-new website.<br /><span className="font-medium tnum">$99.</span>
               </h1>
-              <p className="ss-lead mt-6 max-w-[520px]">Paste your current website. In 48 hours, get a brand-new design built from your own words and photos. Love it? It's $99. Don't? You pay nothing.</p>
+              <p className="ss-lead mt-6 max-w-[520px]">Paste your current website. In 48 hours, get a brand-new design built from your own words and photos. Love it? It's $99 to launch. Don't? You pay nothing.</p>
               <div className="mt-8"><UrlForm /></div>
-              <p className="ss-small mt-4">Free preview · No credit card · $99 + $15/mo hosting, only if you love it</p>
+              <p className="ss-small mt-4">Free preview · No credit card · $99 setup · $25/mo all-in hosting &amp; care, only if you love it</p>
             </div>
             <HeroVisual />
           </div>
@@ -275,7 +272,7 @@ function Index() {
           </div>
         </section>
 
-        <TwoDirections />
+        <BeforeAfter />
 
         <WhyCheap />
 
@@ -305,8 +302,8 @@ function Index() {
             <p className="ss-lead mx-auto mt-4 max-w-[600px] text-center">See your new website free. Pay only when you love it.</p>
             <div className="mx-auto mt-14 grid max-w-[960px] gap-6 md:grid-cols-2">
               <div className="ss-card flex flex-col">
-                <h3 className="ss-card-title">New website</h3>
-                <p className="mt-4 flex items-baseline gap-3"><span className="tnum text-[64px] font-light leading-none tracking-[-2px]">$99</span><span className="text-muted-ink">CAD, one time</span></p>
+                <h3 className="ss-card-title">Website setup</h3>
+                <p className="mt-4 flex items-baseline gap-3"><span className="tnum text-[64px] font-light leading-none tracking-[-2px]">$99</span><span className="text-muted-ink">CAD, one-time setup fee</span></p>
                 <ul className="mt-8 space-y-3 text-ink-2">
                   {["A brand-new website, rebuilt from your current one", "Your words, photos and pages moved over", "Mobile-ready and fast-loading", "Tweaks by email before launch", "Connected to your domain, email untouched"].map((f) => (
                     <li key={f} className="flex gap-3"><Check />{f}</li>
@@ -316,16 +313,17 @@ function Index() {
               </div>
               <div className="flex flex-col rounded-[14px] bg-ink p-8 text-white">
                 <h3 className="ss-card-title">Hosting &amp; care</h3>
-                <p className="mt-4"><span className="tnum text-[40px] font-light tracking-[-1px]">$15</span><span className="text-muted-dark">/month</span></p>
-                <p className="mt-1 text-mint">or $165/year (1 month free)</p>
+                <p className="mt-4"><span className="tnum text-[40px] font-light tracking-[-1px]">$25</span><span className="text-muted-dark">/month, all-in</span></p>
+                <p className="mt-1 text-mint">or $250/year (2 months free)</p>
                 <ul className="mt-8 space-y-3 text-[#c3d3ea]">
-                  {["Fast, secure hosting with SSL", "Backups and security updates", "Small text and photo updates", "Month-to-month. Cancel anytime."].map((f) => (
+                  {["Fast, secure hosting with SSL", "Backups and security updates", "Up to 2 small edits a month (text, photos)", "No technical stuff. We handle it all.", "Month-to-month. Cancel anytime."].map((f) => (
                     <li key={f} className="flex gap-3"><Check className="text-mint" />{f}</li>
                   ))}
                 </ul>
                 <p className="mt-auto pt-8 text-[14px] text-muted-dark">Required with every SwiftSite website. If you cancel, we send you your website files.</p>
               </div>
             </div>
+            <p className="mx-auto mt-6 max-w-[760px] text-center text-ink-2">Wix and Squarespace plans run about $20–35 a month, and you still build and update the website yourself. With SwiftSite, it's built for you and looked after for you.</p>
             <div className="mx-auto mt-6 flex max-w-[960px] flex-col gap-4 rounded-[14px] border border-dashed border-[#c9d6e6] bg-white p-6 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-[18px] font-normal">Want more customers to find you?</p>

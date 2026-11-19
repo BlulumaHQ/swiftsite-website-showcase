@@ -96,7 +96,13 @@ export function SiteFooter() {
       </div>
       <div className="ss-container">
         <div className="mt-10 border-t border-dark-border pt-6">
-          <p className="text-[14px] text-muted-dark">© 2026 SwiftSite</p>
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-[14px] text-muted-dark">© 2026 SwiftSite</p>
+            <p className="flex gap-6 text-[14px]">
+              <a href="/privacy" className="inline-block py-3 text-muted-dark hover:text-mint">Privacy Policy</a>
+              <a href="/terms" className="inline-block py-3 text-muted-dark hover:text-mint">Terms of Service</a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>
