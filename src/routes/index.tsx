@@ -107,6 +107,10 @@ const faqs = [
 
 const testimonials = [
   {
+    quote: "I highly recommend his web design and development services. Working with him has been a fantastic experience. He delivers not just a website, but a complete business solution designed to enhance your brand, generate leads, and support long-term growth. If you're considering upgrading your online presence, I am confident that you'll be impressed with both the process and the results.",
+    name: "Eric Kim", company: "Eric Kim Realty", url: "https://erickimrealty.com/",
+  },
+  {
     quote: "Sony Lin, their lead designer, is a true professional. Over 15 years, he's given our company website a facelift four times.",
     name: "Kevin Chen", company: "K. Chen Construction Management · Vancouver, BC", url: "https://kchencm.com/",
   },
@@ -156,7 +160,7 @@ function Testimonials() {
         <h2 id="clients-h" className="ss-h2 text-center">What our clients say</h2>
         <div className="mt-14 grid gap-6 md:grid-cols-2">
           {testimonials.map((t) => (
-            <figure key={t.name} className="ss-card flex flex-col">
+            <figure key={t.name} className="ss-card flex flex-col md:[&:last-child:nth-child(odd)]:col-span-2">
               <blockquote className="flex-1 text-[17px] leading-relaxed text-ink">&ldquo;{t.quote}&rdquo;</blockquote>
               <figcaption className="mt-6 border-t border-hairline pt-4">
                 <p className="font-medium text-ink">{t.name}</p>
