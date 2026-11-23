@@ -79,7 +79,7 @@ function PreviewCard({ info }: { info: Info }) {
       <h2 className="ss-card-title">Your new website</h2>
       <p className="mt-2 text-ink-2">Click through every page on both your phone and your computer.</p>
       <div className="mt-5 flex flex-wrap gap-3">
-        <a href={info.linkA} target="_blank" rel="noopener noreferrer" className="ss-btn ss-btn-ghost">Open my new website ↗</a>
+        <a href={`/preview?p=${encodeURIComponent(projectIdFromUrl())}`} target="_blank" rel="noopener noreferrer" className="ss-btn ss-btn-ghost">Open my new website ↗</a>
         {info.reportUrl && <a href={info.reportUrl} target="_blank" rel="noopener noreferrer" className="ss-btn ss-btn-ghost">Read the report ↗</a>}
       </div>
     </div>
