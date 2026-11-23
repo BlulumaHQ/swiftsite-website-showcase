@@ -7,7 +7,10 @@ import { SITE_URL, CONTACT_EMAIL, OG_IMAGE } from "@/lib/site";
 import { SiteHeader, SiteFooter, StickyCta } from "@/components/SiteChrome";
 
 const TITLE = "SwiftSite — Brand-new website for $99 CAD";
-const DESC = "AI rebuilds your small business website into a brand-new design, checked by a real designer. See it free, then launch it for a $99 CAD setup plus $25/month all-in hosting & care.";
+const DESC = "Your brand-new small business website in 3 easy steps: paste your site, get a free designer-checked preview in 48 hours, then launch it for a $99 CAD setup plus $25/month all-in hosting & care.";
+
+/** Free previews Sony reviews per week. Change this number any time. */
+const WEEKLY_SPOTS = 10;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -89,10 +92,35 @@ const trustIcons = [
 const trustItems = ["Every site checked by a real designer", "Based in Vancouver, BC", "500+ websites built over 20 years", "Your domain, content and files stay yours"];
 
 const steps = [
-  ["01", "Paste your website", "Our AI reads your current site and pulls your services, photos, hours and contact details. You don't prepare anything."],
-  ["02", "Get your new website", "A real, clickable website built from your content, checked by a designer before it reaches your inbox."],
-  ["03", "Love it? Go live.", "Pay the $99 setup, ask for tweaks by email, and we put it live on your domain. Your email keeps working. You never touch the technical stuff."],
+  ["01", "Paste your website", "Takes 30 seconds", "Just your website address and email. Our AI reads your current site and pulls your services, photos, hours and contact details. You don't prepare anything."],
+  ["02", "We design your new website", "In your inbox within 48 hours", "A real, clickable website built from your content, checked by a designer before it reaches you."],
+  ["03", "You just approve it", "Then we go live", "Pay the $99 setup, ask for tweaks by email, and we put it live on your domain. Your email keeps working. You never touch the technical stuff."],
 ];
+
+function HeroSteps() {
+  return (
+    <ol className="mt-6 grid max-w-[560px] gap-2 sm:grid-cols-3" aria-label="3 easy steps">
+      {steps.map(([n, t, time]) => (
+        <li key={n} className="flex items-center gap-3 rounded-xl border border-hairline bg-white/80 px-3 py-2.5">
+          <span className="tnum flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-ink text-[13px] font-medium text-white">{Number(n)}</span>
+          <span className="leading-tight">
+            <span className="block text-[14px] font-medium text-ink">{t}</span>
+            <span className="block text-[12px] text-muted-ink">{time}</span>
+          </span>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+function SpotsNote({ className = "" }: { className?: string }) {
+  return (
+    <p className={`inline-flex items-center gap-2 text-[14px] font-medium text-ink ${className}`}>
+      <span className="h-2 w-2 rounded-full bg-[#f59e0b]" aria-hidden="true" />
+      Only {WEEKLY_SPOTS} free previews a week, because a designer checks every one.
+    </p>
+  );
+}
 
 const faqs = [
   ["Is it really $99?", "Yes. $99 is a one-time setup fee to rebuild and launch your new website. After that, hosting & care is $25/month (or $250/year, 2 months free). You see your new website before you pay anything."],
@@ -242,8 +270,10 @@ function Index() {
                 Same business.<br />Brand-new website.<br /><span className="font-medium tnum">$99.</span>
               </h1>
               <p className="ss-lead mt-6 max-w-[520px]">Paste your current website. In 48 hours, get a brand-new design built from your own words and photos. Love it? It's $99 to launch. Don't? You pay nothing.</p>
-              <div className="mt-8"><UrlForm /></div>
-              <p className="ss-small mt-4">Free preview · No credit card · $99 setup · $25/mo all-in hosting &amp; care, only if you love it</p>
+              <HeroSteps />
+              <div className="mt-6"><UrlForm /></div>
+              <SpotsNote className="mt-4" />
+              <p className="ss-small mt-2">Free preview · No credit card · $99 setup · $25/mo all-in hosting &amp; care, only if you love it</p>
             </div>
             <HeroVisual />
           </div>
@@ -263,12 +293,14 @@ function Index() {
         <section id="how" className="ss-section">
           <div className="ss-container">
             <p className="ss-eyebrow">How it works</p>
-            <h2 className="ss-h2 mt-4 max-w-[760px]">No meetings. No forms to fill. No designer back-and-forth.</h2>
+            <h2 className="ss-h2 mt-4 max-w-[760px]">Your new website in 3 easy steps.</h2>
+            <p className="ss-lead mt-4 max-w-[640px]">No meetings. No long forms. No designer back-and-forth.</p>
             <div className="mt-14 grid gap-6 md:grid-cols-3">
-              {steps.map(([n, t, d]) => (
+              {steps.map(([n, t, time, d]) => (
                 <div key={n} className="ss-card">
                   <p className="tnum text-[14px] font-medium text-blue">{n}</p>
                   <h3 className="ss-card-title mt-6">{t}</h3>
+                  <p className="mt-1 text-[14px] font-medium text-success">{time}</p>
                   <p className="mt-3 leading-relaxed text-ink-2">{d}</p>
                 </div>
               ))}
@@ -348,6 +380,7 @@ function Index() {
           <div className="ss-container relative flex flex-col items-center text-center">
             <h2 className="ss-h2 max-w-[720px]">See your new website before you spend a dollar.</h2>
             <div className="mt-10 flex w-full justify-center text-left"><UrlForm /></div>
+            <SpotsNote className="mt-4" />
             <p className="ss-small mt-4">Your new website in your inbox within 48 hours · Free · No credit card</p>
           </div>
         </section>
