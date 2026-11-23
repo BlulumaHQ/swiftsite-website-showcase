@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GoLiveRouteImport } from './routes/go-live'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as ReviewRouteImport } from './routes/review'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as WorkRouteImport } from './routes/work'
 
@@ -19,9 +21,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GoLiveRoute = GoLiveRouteImport.update({
+  id: '/go-live',
+  path: '/go-live',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewRoute = ReviewRouteImport.update({
+  id: '/review',
+  path: '/review',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TermsRoute = TermsRouteImport.update({
@@ -37,34 +49,43 @@ const WorkRoute = WorkRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/go-live': typeof GoLiveRoute
   '/privacy': typeof PrivacyRoute
+  '/review': typeof ReviewRoute
   '/terms': typeof TermsRoute
   '/work': typeof WorkRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/go-live': typeof GoLiveRoute
   '/privacy': typeof PrivacyRoute
+  '/review': typeof ReviewRoute
   '/terms': typeof TermsRoute
   '/work': typeof WorkRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/go-live': typeof GoLiveRoute
   '/privacy': typeof PrivacyRoute
+  '/review': typeof ReviewRoute
   '/terms': typeof TermsRoute
   '/work': typeof WorkRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/privacy' | '/terms' | '/work'
+  fullPaths: '/' | '/go-live' | '/privacy' | '/review' | '/terms' | '/work'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/privacy' | '/terms' | '/work'
-  id: '__root__' | '/' | '/privacy' | '/terms' | '/work'
+  to: '/' | '/go-live' | '/privacy' | '/review' | '/terms' | '/work'
+  id:
+    '__root__' | '/' | '/go-live' | '/privacy' | '/review' | '/terms' | '/work'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GoLiveRoute: typeof GoLiveRoute
   PrivacyRoute: typeof PrivacyRoute
+  ReviewRoute: typeof ReviewRoute
   TermsRoute: typeof TermsRoute
   WorkRoute: typeof WorkRoute
 }
@@ -78,11 +99,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/go-live': {
+      id: '/go-live'
+      path: '/go-live'
+      fullPath: '/go-live'
+      preLoaderRoute: typeof GoLiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/review': {
+      id: '/review'
+      path: '/review'
+      fullPath: '/review'
+      preLoaderRoute: typeof ReviewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms': {
@@ -104,7 +139,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GoLiveRoute: GoLiveRoute,
   PrivacyRoute: PrivacyRoute,
+  ReviewRoute: ReviewRoute,
   TermsRoute: TermsRoute,
   WorkRoute: WorkRoute,
 }

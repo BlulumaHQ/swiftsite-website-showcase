@@ -19,7 +19,7 @@ export const Route = createFileRoute("/terms")({
 
 function Terms() {
   return (
-    <LegalPage title="Terms of Service" updated="November 19, 2026">
+    <LegalPage title="Terms of Service" updated="November 23, 2026">
       <section>
         <p>These terms apply when you use SwiftSite, a website design and hosting service based in Vancouver, British Columbia. All prices are in Canadian dollars.</p>
       </section>
@@ -29,7 +29,7 @@ function Terms() {
       </section>
       <section>
         <h2>2. Website setup ($99)</h2>
-        <p>If you love your preview, you pay a one-time $99 setup fee. This covers your new website, moving your existing content over, tweaks requested by email before launch, and connecting the website to your domain. The setup fee is final once your website goes live.</p>
+        <p>If you love your preview, you pay a one-time $99 setup fee. This covers your new website, moving your existing content over, two rounds of changes before launch, and connecting the website to your domain. The setup fee is final once your website goes live.</p>
       </section>
       <section>
         <h2>3. Hosting &amp; care ($25/month or $250/year)</h2>

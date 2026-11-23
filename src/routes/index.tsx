@@ -94,7 +94,7 @@ const trustItems = ["Every site checked by a real designer", "Based in Vancouver
 const steps = [
   ["01", "Paste your website", "Takes 30 seconds", "Just your website address and email. Our AI reads your current site and pulls your services, photos, hours and contact details. You don't prepare anything."],
   ["02", "We design your new website", "In your inbox within 48 hours", "A real, clickable website built from your content, checked by a designer before it reaches you."],
-  ["03", "You just approve it", "Then we go live", "Pay the $99 setup, ask for tweaks by email, and we put it live on your domain. Your email keeps working. You never touch the technical stuff."],
+  ["03", "You just approve it", "Then we go live", "Pay the $99 setup, send us 2 rounds of changes, and we put it live on your domain. Your email keeps working. You never touch the technical stuff."],
 ];
 
 function HeroSteps() {
@@ -341,7 +341,7 @@ function Index() {
                 <h3 className="ss-card-title">Website setup</h3>
                 <p className="mt-4 flex items-baseline gap-3"><span className="tnum text-[64px] font-light leading-none tracking-[-2px]">$99</span><span className="text-muted-ink">CAD, one-time setup fee</span></p>
                 <ul className="mt-8 space-y-3 text-ink-2">
-                  {["A brand-new website, rebuilt from your current one", "Your words, photos and pages moved over", "Mobile-ready and fast-loading", "Tweaks by email before launch", "Connected to your domain, email untouched"].map((f) => (
+                  {["A brand-new website, rebuilt from your current one", "Your words, photos and pages moved over", "Mobile-ready and fast-loading", "2 rounds of changes before launch", "Connected to your domain, email untouched"].map((f) => (
                     <li key={f} className="flex gap-3"><Check />{f}</li>
                   ))}
                 </ul>
