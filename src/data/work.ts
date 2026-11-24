@@ -164,7 +164,7 @@ export const launchedSites: LaunchedSite[] = [
   site("Dr. Patrick Wu", "Dentist", "drpatrickwu/live-netlify-desktop.jpg", "https://drpatrickwu.com/"),
   site("la petite.elli", "Online store", "lapetiteelli/live-netlify-desktop.jpg", "https://lapetiteelli.com/"),
   site("John Han-Chang Lin", "Artist", "johnlinart/live-netlify-desktop.jpg", "https://johnlinart.ca/"),
-  site("Initial Salon", "Hair salon", "initial-hair/a-cloudflare_worker-desktop.jpg", "https://initial-hair-a.sony-40b.workers.dev/"),
+  site("Initial Salon", "Hair salon", "initial-hair/a-cloudflare_worker-desktop.jpg", "https://www.initialsalon.ca/"),
   site("Oceanicflo Construction", "Construction", "oceanicflo/a-cloudflare_worker-desktop.jpg", "https://oceanicflo-a.sony-40b.workers.dev/"),
   site("Yingting Smart", "Smart home", "yingting-smart/a-cloudflare_worker-desktop.jpg", "https://yingting-smart.sony-40b.workers.dev/"),
   site("Oxford Venture", "Education", "oxford-venture/a-cloudflare_worker-desktop.jpg", "https://oxford-venture.sony-40b.workers.dev/"),
