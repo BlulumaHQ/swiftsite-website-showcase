@@ -61,7 +61,7 @@ function HeroVisual() {
         <img src={after} alt="" loading="eager" fetchPriority="high" decoding="async" className="block aspect-[16/10] w-full rounded-md object-cover object-top" />
       </BrowserCard>
       <div className="absolute bottom-0 left-[4%] flex items-center gap-3 rounded-2xl border border-hairline bg-white px-4 py-3 shadow-lg">
-        <img src="/images/sony-lin.jpg" alt="" width={40} height={40} className="h-10 w-10 rounded-full object-cover" />
+        <img src="/images/sony-lin-swiftsite-lead-designer.webp" alt="" width={40} height={40} className="h-10 w-10 rounded-full object-cover" />
         <span>
           <span className="block text-[13px] font-medium text-ink">Checked by Sony Lin</span>
           <span className="block text-[12px] text-muted-ink">Lead designer · 500+ websites</span>
@@ -208,7 +208,7 @@ function Founder() {
     <section className="ss-section">
       <div className="ss-container">
         <div className="mx-auto flex max-w-[760px] flex-col items-center gap-6 text-center sm:flex-row sm:items-start sm:text-left">
-          <img src="/images/sony-lin.jpg" alt="Sony Lin, founder and lead designer of SwiftSite" width={112} height={112} loading="lazy" className="h-28 w-28 shrink-0 rounded-full object-cover" />
+          <img src="/images/sony-lin-swiftsite-lead-designer.webp" alt="Sony Lin, founder and lead designer of SwiftSite" width={112} height={112} loading="lazy" className="h-28 w-28 shrink-0 rounded-full object-cover" />
           <div>
             <p className="text-[26px] font-light leading-snug tracking-[-0.5px] text-ink">&ldquo;I personally review every website before you see it.&rdquo;</p>
             <p className="mt-4 leading-relaxed text-ink-2">SwiftSite is run by a real designer, not a template factory. I've built 500+ websites over 20 years for small businesses, clinics, contractors and restaurants in Vancouver. Every SwiftSite website gets the same care.</p>

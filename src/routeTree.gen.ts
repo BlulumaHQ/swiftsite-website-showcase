@@ -14,6 +14,7 @@ import { Route as GoLiveRouteImport } from './routes/go-live'
 import { Route as PreviewRouteImport } from './routes/preview'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ReviewRouteImport } from './routes/review'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as WorkRouteImport } from './routes/work'
 
@@ -42,6 +43,11 @@ const ReviewRoute = ReviewRouteImport.update({
   path: '/review',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/preview': typeof PreviewRoute
   '/privacy': typeof PrivacyRoute
   '/review': typeof ReviewRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/work': typeof WorkRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/preview': typeof PreviewRoute
   '/privacy': typeof PrivacyRoute
   '/review': typeof ReviewRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/work': typeof WorkRoute
 }
@@ -78,16 +86,31 @@ export interface FileRoutesById {
   '/preview': typeof PreviewRoute
   '/privacy': typeof PrivacyRoute
   '/review': typeof ReviewRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/work': typeof WorkRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/go-live' | '/preview' | '/privacy' | '/review' | '/terms' | '/work'
+    | '/'
+    | '/go-live'
+    | '/preview'
+    | '/privacy'
+    | '/review'
+    | '/sitemap.xml'
+    | '/terms'
+    | '/work'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/go-live' | '/preview' | '/privacy' | '/review' | '/terms' | '/work'
+    | '/'
+    | '/go-live'
+    | '/preview'
+    | '/privacy'
+    | '/review'
+    | '/sitemap.xml'
+    | '/terms'
+    | '/work'
   id:
     | '__root__'
     | '/'
@@ -95,6 +118,7 @@ export interface FileRouteTypes {
     | '/preview'
     | '/privacy'
     | '/review'
+    | '/sitemap.xml'
     | '/terms'
     | '/work'
   fileRoutesById: FileRoutesById
@@ -105,6 +129,7 @@ export interface RootRouteChildren {
   PreviewRoute: typeof PreviewRoute
   PrivacyRoute: typeof PrivacyRoute
   ReviewRoute: typeof ReviewRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   WorkRoute: typeof WorkRoute
 }
@@ -146,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReviewRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -169,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   PreviewRoute: PreviewRoute,
   PrivacyRoute: PrivacyRoute,
   ReviewRoute: ReviewRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   WorkRoute: WorkRoute,
 }
