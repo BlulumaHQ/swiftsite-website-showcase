@@ -18,7 +18,7 @@ export const Route = createFileRoute("/work")({
       { property: "og:image", content: OG_IMAGE },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: "SwiftSite — Same business. Brand-new website. $99." },
+      { property: "og:image:alt", content: "SwiftSite — Same business. Brand-new website. $199." },
       { property: "og:site_name", content: "SwiftSite" },
       { name: "twitter:image", content: OG_IMAGE },
       { name: "twitter:card", content: "summary_large_image" },

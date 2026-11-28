@@ -72,7 +72,7 @@ export function StickyCta() {
   }, []);
   return (
     <div className={`fixed inset-x-0 bottom-0 z-40 border-t border-hairline bg-white/95 px-5 py-3 backdrop-blur transition-transform md:hidden ${show ? "translate-y-0" : "translate-y-full"}`} aria-hidden={!show}>
-      <a href="/#start" tabIndex={show ? 0 : -1} className="ss-btn ss-btn-primary w-full">Get my free preview · $99</a>
+      <a href="/#start" tabIndex={show ? 0 : -1} className="ss-btn ss-btn-primary w-full">Get my free preview · $199</a>
     </div>
   );
 }

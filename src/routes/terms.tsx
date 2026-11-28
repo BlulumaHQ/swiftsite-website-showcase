@@ -28,8 +28,8 @@ function Terms() {
         <p>We build one free website preview from the public content of the website you submit. There is no charge and no credit card is needed. If you decide not to go ahead, you owe nothing.</p>
       </section>
       <section>
-        <h2>2. Website setup ($99)</h2>
-        <p>If you love your preview, you pay a one-time $99 setup fee. This covers your new website, moving your existing content over, two rounds of changes before launch, and connecting the website to your domain. The setup fee is final once your website goes live.</p>
+        <h2>2. Website setup ($199)</h2>
+        <p>If you love your preview, you pay a one-time $199 setup fee. This covers your new website, moving your existing content over, two rounds of changes before launch, and connecting the website to your domain. The setup fee is final once your website goes live.</p>
       </section>
       <section>
         <h2>3. Hosting &amp; care ($25/month or $250/year)</h2>

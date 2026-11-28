@@ -27,7 +27,7 @@ type Info = {
   pending: { round: number } | null;
 };
 
-const PRICE = { setup: 99, monthly: 25, yearly: 250, includedRounds: 2 };
+const PRICE = { setup: 199, monthly: 25, yearly: 250, includedRounds: 2 };
 
 function Review() {
   const [projectId, setProjectId] = useState("");

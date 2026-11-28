@@ -6,8 +6,8 @@ import { BeforeAfter } from "@/components/BeforeAfter";
 import { SITE_URL, CONTACT_EMAIL, OG_IMAGE } from "@/lib/site";
 import { SiteHeader, SiteFooter, StickyCta } from "@/components/SiteChrome";
 
-const TITLE = "SwiftSite — Brand-new website for $99 CAD";
-const DESC = "Your brand-new small business website in 3 easy steps: paste your site, get a free designer-checked preview in 48 hours, then launch it for a $99 CAD setup plus $25/month all-in hosting & care.";
+const TITLE = "SwiftSite — Brand-new website for $199 CAD";
+const DESC = "Your brand-new small business website in 3 easy steps: paste your site, get a free designer-checked preview in 48 hours, then launch it for a $199 CAD setup plus $25/month all-in hosting & care.";
 
 /** Free previews Sony reviews per week. Change this number any time. */
 const WEEKLY_SPOTS = 10;
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/")({
       { property: "og:image", content: OG_IMAGE },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: "SwiftSite — Same business. Brand-new website. $99." },
+      { property: "og:image:alt", content: "SwiftSite — Same business. Brand-new website. $199." },
       { property: "og:site_name", content: "SwiftSite" },
       { name: "twitter:image", content: OG_IMAGE },
       { name: "twitter:card", content: "summary_large_image" },
@@ -94,7 +94,7 @@ const trustItems = ["Every site checked by a real designer", "Based in Vancouver
 const steps = [
   ["01", "Paste your website", "Takes 30 seconds", "Just your website address and email. Our AI reads your current site and pulls your services, photos, hours and contact details. You don't prepare anything."],
   ["02", "We design your new website", "In your inbox within 48 hours", "A real, clickable website built from your content, checked by a designer before it reaches you."],
-  ["03", "You just approve it", "Then we go live", "Pay the $99 setup, send us 2 rounds of changes, and we put it live on your domain. Your email keeps working. You never touch the technical stuff."],
+  ["03", "You just approve it", "Then we go live", "Pay the $199 setup, send us 2 rounds of changes, and we put it live on your domain. Your email keeps working. You never touch the technical stuff."],
 ];
 
 function HeroSteps() {
@@ -123,7 +123,7 @@ function SpotsNote({ className = "" }: { className?: string }) {
 }
 
 const faqs = [
-  ["Is it really $99?", "Yes. $99 is a one-time setup fee to rebuild and launch your new website. After that, hosting & care is $25/month (or $250/year, 2 months free). You see your new website before you pay anything."],
+  ["Is it really $199?", "Yes. $199 is a one-time setup fee to rebuild and launch your new website. After that, hosting & care is $25/month (or $250/year, 2 months free). You see your new website before you pay anything."],
   ["Why is it so cheap?", "Because most of the work is automated. Our AI reads your current website and rebuilds it in hours instead of weeks, with no meetings or questionnaires. What isn't automated is the design: Sony Lin, our lead designer with 20 years and 500+ websites behind him, checks every page before it reaches you. Fast because of AI, good because of a real designer."],
   ["What if I don't like it?", "Then you pay nothing. Your preview is free and no credit card is needed."],
   ["Do I have to pay monthly?", "Yes. Every SwiftSite website is hosted and looked after by us for $25/month, or $250/year. It's all-in: secure hosting, backups, security updates and up to 2 small edits a month. Month-to-month, cancel anytime. Your plan runs to the end of the period you've paid for, with no partial refunds."],
@@ -159,14 +159,14 @@ const testimonials = [
 const whyCheap = [
   ["AI does the heavy lifting", "It reads your current site and rebuilds it in hours, not weeks. No meetings, no questionnaires."],
   ["A designer checks every page", "Sony Lin, with 500+ websites over 20 years, reviews your site before you ever see it."],
-  ["You only pay if you love it", "Your preview is a real, live website. Like it? Pay the $99 setup. Don't? Walk away, no charge."],
+  ["You only pay if you love it", "Your preview is a real, live website. Like it? Pay the $199 setup. Don't? Walk away, no charge."],
 ];
 
 function WhyCheap() {
   return (
     <section className="ss-section">
       <div className="ss-container">
-        <p className="ss-eyebrow">Why only $99?</p>
+        <p className="ss-eyebrow">Why only $199?</p>
         <h2 className="ss-h2 mt-4 max-w-[760px]">Fast because of AI. Good because of a real designer.</h2>
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {whyCheap.map(([t, d]) => (
@@ -267,13 +267,13 @@ function Index() {
                 AI-built · Designer-checked · Made in Vancouver
               </span>
               <h1 className="ss-h1 mt-6">
-                Same business.<br />Brand-new website.<br /><span className="font-medium tnum">$99.</span>
+                Same business.<br />Brand-new website.<br /><span className="font-medium tnum">$199.</span>
               </h1>
-              <p className="ss-lead mt-6 max-w-[520px]">Paste your current website. In 48 hours, get a brand-new design built from your own words and photos. Love it? It's $99 to launch. Don't? You pay nothing.</p>
+              <p className="ss-lead mt-6 max-w-[520px]">Paste your current website. In 48 hours, get a brand-new design built from your own words and photos. Love it? It's $199 to launch. Don't? You pay nothing.</p>
               <HeroSteps />
               <div className="mt-6"><UrlForm /></div>
               <SpotsNote className="mt-4" />
-              <p className="ss-small mt-2">Free preview · No credit card · $99 setup · $25/mo all-in hosting &amp; care, only if you love it</p>
+              <p className="ss-small mt-2">Free preview · No credit card · $199 setup · $25/mo all-in hosting &amp; care, only if you love it</p>
             </div>
             <HeroVisual />
           </div>
@@ -339,7 +339,7 @@ function Index() {
             <div className="mx-auto mt-14 grid max-w-[960px] gap-6 md:grid-cols-2">
               <div className="ss-card flex flex-col">
                 <h3 className="ss-card-title">Website setup</h3>
-                <p className="mt-4 flex items-baseline gap-3"><span className="tnum text-[64px] font-light leading-none tracking-[-2px]">$99</span><span className="text-muted-ink">CAD, one-time setup fee</span></p>
+                <p className="mt-4 flex items-baseline gap-3"><span className="tnum text-[64px] font-light leading-none tracking-[-2px]">$199</span><span className="text-muted-ink">CAD, one-time setup fee</span></p>
                 <ul className="mt-8 space-y-3 text-ink-2">
                   {["A brand-new website, rebuilt from your current one", "Your words, photos and pages moved over", "Mobile-ready and fast-loading", "2 rounds of changes before launch", "Connected to your domain, email untouched"].map((f) => (
                     <li key={f} className="flex gap-3"><Check />{f}</li>
