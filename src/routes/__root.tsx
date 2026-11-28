@@ -73,6 +73,12 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   );
 }
 
+const TRACKING_SNIPPET = `
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","zkhd1qbuc4");
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','AW-18591608238');
+!function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f);}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");oaiq("init",{pixelId:"4HQwbdu7cnAo7mvY5suydK"});
+`;
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     // Replace these placeholders with the app's name and description when first building the app.
@@ -111,6 +117,9 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
+        {/* Analytics: Microsoft Clarity, Google Ads tag, ChatGPT Ads pixel */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18591608238" />
+        <script dangerouslySetInnerHTML={{ __html: TRACKING_SNIPPET }} />
         <HeadContent />
       </head>
       <body>

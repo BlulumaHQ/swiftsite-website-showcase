@@ -4,7 +4,12 @@ const DOMAIN_RE = /^(https?:\/\/)?(www\.)?[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}(\
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 declare global {
-  interface Window { dataLayer?: unknown[] }
+  interface Window {
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
+    oaiq?: (...args: unknown[]) => void;
+    clarity?: (...args: unknown[]) => void;
+  }
 }
 
 /** Conversion event for analytics (GA4 / GTM read dataLayer; harmless if none is installed). */
@@ -12,6 +17,9 @@ function trackLead() {
   try {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: "generate_lead", form: "swiftsite_preview" });
+    window.gtag?.("event", "conversion", { send_to: "AW-18591608238/zF0ACLyY9cAdEK7blaFF" });
+    window.oaiq?.("measure", "lead_created", { type: "customer_action" });
+    window.clarity?.("event", "lead_submitted");
   } catch {
     /* analytics must never break the form */
   }
